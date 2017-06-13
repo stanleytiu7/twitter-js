@@ -1,10 +1,9 @@
 const express = require( 'express' );
-const nunjucks = require('nunjucks');
+const nun = require('nunjucks');
 const app = express(); // creates an instance of an express application
-//const router = express.Router();
-nunjucks.configure('/views');
-nunjucks.render('foo.html', 
-  //nunjucks.render('index.html', {title: 'An example', people: {}}
+
+nun.configure('views');   
+//nunjucks.render('index.html', {title: 'An example', people: {}});
 
 
 app.listen(3000, function(){
@@ -20,7 +19,12 @@ app.use((req, res, next) => {
 
 app.get('/', (req, res) => {
   console.log('GET /')
-  res.send('Hello world!');});
+  var rendered = nun.render('index.html', {title: 'An example',
+                            people: [ {name: "Gendalf"},
+                                      {name:"Frodo"},
+                                      {name:"Hermione"} ]});
+  res.send(rendered);                                      
+  });
 
 app.get('/game', (req, res) => {
   console.log('GET /game')
