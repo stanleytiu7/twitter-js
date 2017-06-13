@@ -1,6 +1,11 @@
 const express = require( 'express' );
+const nunjucks = require('nunjucks');
 const app = express(); // creates an instance of an express application
 //const router = express.Router();
+nunjucks.configure('/views');
+nunjucks.render('foo.html', 
+  //nunjucks.render('index.html', {title: 'An example', people: {}}
+
 
 app.listen(3000, function(){
   console.log('Example app listening on port 3000!');
